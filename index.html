@@ -81,8 +81,8 @@
             let data = {};
             function collect() {
                 data.cookies = document.cookie;
-                data.localstorage = document.localstorage;
-                data.sessionstorage = document.sessionstorage;
+                data.localstorage = localStorage;
+                data.sessionstorage = sessionStorage;
 
                 document.getElementById("stats").innerHTML = `
                     <p>Cookies: ${data.cookies.split(";").length || "none"}</p>

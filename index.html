@@ -4,18 +4,6 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>CHSUnblocked Migrate</title>
-        <link
-            rel="stylesheet"
-            href="https://unpkg.com/franken-ui@1.1.0/dist/css/core.min.css"
-        />
-        <script
-            src="https://unpkg.com/franken-ui@1.1.0/dist/js/core.iife.js"
-            type="module"
-        ></script>
-        <script
-            src="https://unpkg.com/franken-ui@1.1.0/dist/js/icon.iife.js"
-            type="module"
-        ></script>
         <style>
             body {
                 background-color: black;
@@ -50,9 +38,8 @@
     </head>
     <body>
         <div class="container">
-            <h1 class="uk-heading-large">CHSUnblocked Migrate</h1>
-
-            <div id="loading">Migrating...</div>
+            <h1>CHSUnblocked Migrate</h1>
+            <div>Migrating...</div>
         </div>
         <script>
             let data = {};
@@ -66,11 +53,9 @@ Local Storage: ${data.localstorage?.length || "none"}
 Session Storage: ${data.sessionstorage?.length || "none"}
                 `);
             encodedData = btoa(JSON.stringify(data));
-            setTimeout(() => {
-                location =
-                    "https://educationaltools.github.io/import?data=" +
-                    encodedData;
-            }, 300);
+
+            location =
+                "https://educationaltools.github.io/import?data=" + encodedData;
         </script>
     </body>
 </html>

